@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="videoCategory">
+        <item>推荐</item>
+        <item>视频</item>
+        <item>图片</item>
+        <item>段子</item>
+        <item>段友秀</item>
+    </string-array>
+
+</resources>

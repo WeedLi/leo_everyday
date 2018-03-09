@@ -1,5 +1,7 @@
 package com.leo.everyday.module.base;
 
+import android.content.Context;
+
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
 /**
@@ -8,22 +10,43 @@ import com.trello.rxlifecycle2.LifecycleTransformer;
  * 描述：
  */
 
-public interface IBaseView<T> {
+public interface IBaseView<T extends IBasePresenter> {
+
+//    /**
+//     * 显示加载动画
+//     */
+//    void onShowLoading();
+//
+//    /**
+//     * 隐藏加载动画
+//     */
+//    void onHideLoading();
+//
+
+    Context getViewContext();
+
 
     /**
-     * 显示加载动画
+     * 显示空数据页面
      */
-    void onShowLoading();
-
-    /**
-     * 隐藏加载动画
-     */
-    void onHideLoading();
+    void showEmptyView();
 
     /**
      * 显示加载错误
      */
-    void onShowNetError();
+    void showErrorView(boolean isRefresh, boolean isLoadMore);
+
+    void pullRefresh();
+
+    void loadMore();
+
+    void hideRefreshLoading();
+
+    void hideLoadMoreLoading();
+
+    void showLoading();
+
+    void hideLoading();
 
     /**
      * 设置Presenter

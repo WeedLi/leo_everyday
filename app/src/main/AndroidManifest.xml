@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.leo.everyday">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
     <application
         android:name=".InitApp"
         android:allowBackup="true"
@@ -21,8 +27,11 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".module.photo.content.PhotoContentActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".module.news.NewsContentActivity"></activity>
     </application>
 
 </manifest>

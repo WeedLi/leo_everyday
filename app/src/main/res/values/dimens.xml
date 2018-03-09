@@ -12,4 +12,8 @@
     <dimen name="padding2">16dp</dimen>
     <dimen name="padding3">18dp</dimen>
 
+
+    <dimen name="textH3">16dp</dimen>
+
+
 </resources>

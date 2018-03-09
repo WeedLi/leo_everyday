@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemroot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:padding="@dimen/padding1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageview1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/padding0"
+            android:layout_toLeftOf="@id/imageview1"
+            android:text="粑粑粑粑粑粑粑粑粑粑粑粑粑打扫打扫打扫的粑"
+            android:textColor="@color/textcolor1"
+            android:textSize="@dimen/textH3" />
+
+    </RelativeLayout>
+
+    <View style="@style/HorpaddingView" />
+
+    <View style="@style/HorpaddingLine" />
+
+
+</LinearLayout>

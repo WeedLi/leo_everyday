@@ -27,20 +27,18 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.0.2'
     implementation 'com.android.support:design:27.0.2'
+    implementation 'com.android.support:cardview-v7:27.0.2'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.android.support:multidex:1.0.2'
-
     implementation 'com.android.support:support-vector-drawable:27.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
     //文本粒子动画：https://github.com/Yasic/ParticleTextView
-//    implementation 'yasic.library.ParticleTextView:particletextview:0.0.6'
-
+    //    implementation 'yasic.library.ParticleTextView:particletextview:0.0.6'
     //闪烁动画：https://github.com/RomainPiel/Shimmer-android
     implementation 'com.romainpiel.shimmer:library:1.4.0@aar'
 
@@ -48,11 +46,20 @@ dependencies {
     implementation 'com.trello.rxlifecycle2:rxlifecycle:2.0.1'
     implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.0.1'
 
-    // RxJava 2
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //Glide 加载图片
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    // 节操播放器
+    implementation 'cn.jzvd:jiaozivideoplayer:6.2.7'
+    //九宫图
+    implementation 'com.jaeger.ninegridimageview:library:1.0.2'
+    //图片浏览
+//    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
+    compile 'com.github.chrisbanes:PhotoView:2.0.0'
+
+    //RecyclerView
+    implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
+    implementation project(':networklibrary')
 
     // 简化版 Adapter
     implementation 'me.drakeet.multitype:multitype:3.3.3'
-
 }

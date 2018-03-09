@@ -5,5 +5,14 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="gray">#9cffffff</color>
+    <color name="white">#ffffff</color>
+
+
+    <color name="main_color">#3F51B5</color>
+
+    <color name="textcolor1">#515151</color>
+
+    <!--线的颜色-->
+    <color name="line_color">#f2f2f2</color>
 
 </resources>

@@ -12,6 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!--  <android.support.v7.widget.RecyclerView
+              android:id="@+id/recycler_view"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fadeScrollbars="true"
+              android:scrollbarFadeDuration="1"
+              android:scrollbars="vertical"
+              app:layoutManager="LinearLayoutManager" />-->
+
+
+        <!--<com.jcodecraeer.xrecyclerview.XRecyclerView-->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"

@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+
+
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        jackOptions {
+            enabled = true
+        }
+    }
+
+    buildTypes {
+        release {
+            postprocessing {
+                removeUnusedCode false
+                removeUnusedResources false
+                obfuscate false
+                optimizeCode false
+                proguardFile 'proguard-rules.pro'
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    // RxJava 2
+    compile 'io.reactivex.rxjava2:rxjava:2.1.0'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    // retrofit 2
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
+    // okhttp 3
+    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+    debugCompile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    // 持久化 Cookie
+    compile 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+    // 解析JSON
+    compile 'com.google.code.gson:gson:2.8.1'
+}

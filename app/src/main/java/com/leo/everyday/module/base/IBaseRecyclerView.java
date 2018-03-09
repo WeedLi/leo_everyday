@@ -8,19 +8,19 @@ import java.util.List;
  * 描述：
  */
 
-public interface IBaseRecyclerView<T> extends IBaseView<T> {
+public interface IBaseRecyclerView<T extends IBasePresenter> extends IBaseView<T> {
 
     /**
      * 设置适配器
      *
      * @param list
      */
-    void onSetAdapter(List<?> list);
+    void onSetData(List<?> list);
 
 
-    /**
-     * 加载完毕
-     */
-    void onShowSuccessFinish();
+    void onSetRefreshData(List<?> list);
+
+
+    void onSetLoadMoreData(List<?> list);
 
 }

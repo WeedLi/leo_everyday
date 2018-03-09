@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -16,5 +16,24 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="HorpaddingView">
+        <item name="android:layout_height">@dimen/padding1</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="VerpaddingView">
+        <item name="android:layout_height">10dp</item>
+        <item name="android:layout_width">@dimen/padding0</item>
+    </style>
+
+    <style name="HorpaddingLine">
+        <item name="android:layout_height">0.8dp</item>
+        <item name="android:background">@color/line_color</item>
+        <item name="android:layout_marginLeft">@dimen/padding1</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
 
 </resources>

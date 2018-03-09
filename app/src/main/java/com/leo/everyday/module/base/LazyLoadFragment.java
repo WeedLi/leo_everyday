@@ -9,17 +9,22 @@ import android.support.annotation.Nullable;
  * 描述：懒加载的Fragment
  */
 
-public abstract class LazyLoadFragment extends BaseFragment {
+public abstract class LazyLoadFragment<T extends IBasePresenter> extends BaseFragment<T> {
 
     protected boolean isViewPrepareded;
     protected boolean isDataPrepareded;
     protected boolean isVisibleToUser;
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         isViewPrepareded = true;
+        prepareObtainData();
     }
 
     //ViewPager转页的时候使用  事务的show和hide 是用另外的方法

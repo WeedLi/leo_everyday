@@ -4,13 +4,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.leo.everyday.module.news.NewsTablayout;
 import com.leo.everyday.module.photo.PhotoTabLayout;
-import com.leo.everyday.module.video.VideoTabLayout;
+import com.leo.everyday.module.connotations.ConnotationsTabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,10 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
     private NewsTablayout newsTablayout;
     private PhotoTabLayout photoTabLayout;
-    private VideoTabLayout videoTabLayout;
+    private ConnotationsTabLayout connotationsTabLayout;
 
     private Toolbar toolbar;
     private BottomNavigationView navigation;
+    private DrawerLayout drawerLayout;
 
     private int position;
 
@@ -55,13 +58,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         navigation = findViewById(R.id.navigation);
         toolbar = findViewById(R.id.toolbar);
+        drawerLayout = findViewById(R.id.drawer_layout);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         setSupportActionBar(toolbar);
+        toolbar.setTitle("");
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
         if (savedInstanceState != null) {
             newsTablayout = (NewsTablayout) getSupportFragmentManager().findFragmentByTag(NewsTablayout.class.getName());
             photoTabLayout = (PhotoTabLayout) getSupportFragmentManager().findFragmentByTag(PhotoTabLayout.class.getName());
-            videoTabLayout = (VideoTabLayout) getSupportFragmentManager().findFragmentByTag(VideoTabLayout.class.getName());
+            connotationsTabLayout = (ConnotationsTabLayout) getSupportFragmentManager().findFragmentByTag(ConnotationsTabLayout.class.getName());
             position = savedInstanceState.getInt(POSITION);
             showFragment(position);
             navigation.setSelectedItemId(savedInstanceState.getInt(SELECT_ITEM));
@@ -83,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         position = index;
         switch (index) {
             case FRAGMENT_NEWS:
-                toolbar.setTitle("新闻");
+                getSupportActionBar().setTitle(getResources().getString(R.string.title_news));
                 if (newsTablayout == null) {
                     newsTablayout = NewsTablayout.getInstance();
                     fragmentTransaction.add(R.id.container, newsTablayout, NewsTablayout.class.getName());
@@ -92,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case FRAGMENT_PHOTO:
-                toolbar.setTitle("图片");
+                getSupportActionBar().setTitle(getResources().getString(R.string.title_photo));
                 if (photoTabLayout == null) {
                     photoTabLayout = PhotoTabLayout.getInstance();
                     fragmentTransaction.add(R.id.container, photoTabLayout, PhotoTabLayout.class.getName());
@@ -101,12 +111,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case FRAGMENT_VIDEO:
-                toolbar.setTitle("视频");
-                if (videoTabLayout == null) {
-                    videoTabLayout = VideoTabLayout.getInstance();
-                    fragmentTransaction.add(R.id.container, videoTabLayout, VideoTabLayout.class.getName());
+                getSupportActionBar().setTitle(getResources().getString(R.string.title_connotation));
+                if (connotationsTabLayout == null) {
+                    connotationsTabLayout = ConnotationsTabLayout.getInstance();
+                    fragmentTransaction.add(R.id.container, connotationsTabLayout, ConnotationsTabLayout.class.getName());
                 } else {
-                    fragmentTransaction.show(videoTabLayout);
+                    fragmentTransaction.show(connotationsTabLayout);
                 }
                 break;
         }
@@ -120,8 +130,8 @@ public class MainActivity extends AppCompatActivity {
         if (photoTabLayout != null)
             fragmentTransaction.hide(photoTabLayout);
 
-        if (videoTabLayout != null)
-            fragmentTransaction.hide(videoTabLayout);
+        if (connotationsTabLayout != null)
+            fragmentTransaction.hide(connotationsTabLayout);
     }
 
 
