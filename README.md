@@ -1,7 +1,8 @@
 # leo_everyday
 <img src="./art/logo_192.png" width="128" alt="logo">
 
-everyday采用 MVP + RxJava + Retrofit 架构的项目。里面的功能都在不断的完善中。
+everyday采用 MVP + RxJava + Retrofit 架构的项目。
+初版是为了展示实现的方式，功能效果都比较粗略。
 
 其中API来自 [聚合数据](https://www.juhe.cn/)
             [干货集中营](http://gank.io/)
