@@ -75,7 +75,7 @@ public abstract class BaseRecyclerView<T extends IBasePresenter> extends LazyLoa
     }
 
     @Override
-    
+
     public void handleLazyData() {
         observable = RxBus.getInstance().register(BaseRecyclerView.TAG);
         observable.subscribe(new Consumer<Integer>() {

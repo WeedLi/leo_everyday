@@ -2,12 +2,13 @@ package com.leo.everyday.module.photo;
 
 import android.util.Log;
 
-import com.leo.everyday.PhotoErrorHandleTransformer;
-import com.leo.everyday.RetrofitFactory;
-import com.leo.everyday.api.IPhotoApi;
 import com.leo.everyday.bean.photo.PhotoBean;
+import com.leo.everyday.networklibrary.ApiBiz;
+import com.leo.everyday.request.PhotoRequest;
+import com.leo.everyday.transformer.PhotoErrorHandleTransformer;
 
 import io.reactivex.Observer;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -17,7 +18,7 @@ import io.reactivex.schedulers.Schedulers;
  * <p>
  * 描述：
  */
-
+@SuppressWarnings("unchecked")
 public class PhotoPresenter implements IPhotoItem.Presenter {
 
     private IPhotoItem.View view;
@@ -41,10 +42,11 @@ public class PhotoPresenter implements IPhotoItem.Presenter {
     public void doLoadData(final boolean isRefresh, final boolean isLoadMore) {
         if (isRefresh)
             page = 1;
-        RetrofitFactory.getRetrofit().create(IPhotoApi.class)
-                .getPhotoData("http://gank.io/api/data/福利/10/" + page)
-                .subscribeOn(Schedulers.io())
+
+        ApiBiz.getInstance()
+                .get("http://gank.io/api/data/福利/10/" + page, new PhotoRequest(), PhotoBean.class)
                 .compose(new PhotoErrorHandleTransformer())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<PhotoBean>() {
                     @Override
@@ -90,6 +92,7 @@ public class PhotoPresenter implements IPhotoItem.Presenter {
                             view.hideLoading();
                     }
                 });
+
     }
 
 }

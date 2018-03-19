@@ -1,6 +1,6 @@
-package com.leo.everyday;
+package com.leo.everyday.transformer;
 
-import com.leo.everyday.bean.photo.PhotoBean;
+import com.leo.everyday.bean.news.NewsTabBean;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -13,18 +13,19 @@ import io.reactivex.functions.Function;
  * 描述：新闻错误处理
  */
 
-public class PhotoErrorHandleTransformer implements ObservableTransformer {
+public class NewsErrorHandleTransformer implements ObservableTransformer {
 
     @Override
     public ObservableSource apply(Observable upstream) {
-        return upstream.map(new Function<PhotoBean, PhotoBean>() {
+//ConnotationsListBean
+        return upstream.map(new Function<NewsTabBean, NewsTabBean>() {
 
             @Override
-            public PhotoBean apply(PhotoBean photoBean) throws Exception {
-                if (photoBean.error) {
+            public NewsTabBean apply(NewsTabBean newsTabBean) throws Exception {
+                if (newsTabBean.error_code > 0) {
                     throw new RuntimeException();
                 }
-                return photoBean;
+                return newsTabBean;
             }
 
         }).onErrorResumeNext(new Function<Throwable, Observable>() {

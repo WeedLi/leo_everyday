@@ -1,13 +1,14 @@
 package com.leo.everyday.module.connotations.tabs;
 
+import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.leo.everyday.ConnotationsErrorHandleTransformer;
-import com.leo.everyday.RetrofitFactory;
-import com.leo.everyday.api.IConnotationsApi;
 import com.leo.everyday.bean.connotations.ConnotationsItemBean;
 import com.leo.everyday.bean.connotations.ConnotationsListBean;
+import com.leo.everyday.networklibrary.ApiBiz;
+import com.leo.everyday.request.ConnotationRequest;
+import com.leo.everyday.transformer.ConnotationsErrorHandleTransformer;
 import com.leo.everyday.util.ConnotationsUrlUtil;
 
 import java.util.Iterator;
@@ -19,12 +20,18 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.leo.everyday.Constant.TAB_PIC;
+import static com.leo.everyday.Constant.TAB_RECOMMEND;
+import static com.leo.everyday.Constant.TAB_SHOW;
+import static com.leo.everyday.Constant.TAB_TEXT;
+import static com.leo.everyday.Constant.TAB_VIDEO;
+
 /**
  * 作者：Leo on 2018/1/31 11:14
  * <p>
  * 描述：
  */
-
+@SuppressWarnings("unchecked")
 public class ConnotationsTabPresenter implements IConnotationsTab.Presenter {
 
     private IConnotationsTab.View view;
@@ -41,11 +48,27 @@ public class ConnotationsTabPresenter implements IConnotationsTab.Presenter {
         if (isRefresh) {
             if (TextUtils.isEmpty(min_time))
                 min_time = System.currentTimeMillis() + "";
-            return ConnotationsUrlUtil.spliteUrl(view.getViewContext(), min_time);
+            return getTabSUrl(view.getViewContext(), min_time);
         }
         if (TextUtils.isEmpty(max_time))
             max_time = System.currentTimeMillis() + "";
-        return ConnotationsUrlUtil.spliteUrl(view.getViewContext(), max_time);
+        return getTabSUrl(view.getViewContext(), max_time);
+    }
+
+    private String getTabSUrl(Context context, String string) {
+        switch (currTab) {
+            case TAB_VIDEO:
+                return ConnotationsUrlUtil.spliteVideoUrl(context, string);
+            case TAB_PIC:
+                return ConnotationsUrlUtil.splitePicUrl(context, string);
+            case TAB_TEXT:
+                return ConnotationsUrlUtil.spliteTextUrl(context, string);
+            case TAB_SHOW:
+                return ConnotationsUrlUtil.spliteShowUrl(context, string);
+            case TAB_RECOMMEND:
+            default:
+                return ConnotationsUrlUtil.spliteRecommendUrl(context, string);
+        }
     }
 
     @Override
@@ -61,8 +84,10 @@ public class ConnotationsTabPresenter implements IConnotationsTab.Presenter {
     @Override
     public void onLoadData(final boolean isRefresh, final boolean isLoadMore, int type) {
         this.currTab = type;
-        RetrofitFactory.getRetrofit().create(IConnotationsApi.class)
-                .getVideoListData(getNetUrl(isRefresh))
+
+        ApiBiz.getInstance()
+                .cacheKey("neihan" + currTab)
+                .get(getNetUrl(isRefresh), new ConnotationRequest(), ConnotationsListBean.class)
                 .compose(new ConnotationsErrorHandleTransformer())
                 .map(new Function<ConnotationsListBean, List<ConnotationsItemBean>>() {
                     @Override
@@ -125,6 +150,7 @@ public class ConnotationsTabPresenter implements IConnotationsTab.Presenter {
                             view.hideLoading();
                     }
                 });
+
     }
 
 }

@@ -46,6 +46,10 @@ public class RetrofitClient {
         return baseUrl;
     }
 
+    public Context getContext() {
+        return mBuilder.context;
+    }
+
     @NonNull
     public Retrofit initRetrofit() {
 

@@ -1,5 +1,6 @@
 package com.leo.everyday.bean.photo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  * 描述：
  */
 
-public class PhotoBean {
+public class PhotoBean implements Serializable {
 
     public boolean error;
 

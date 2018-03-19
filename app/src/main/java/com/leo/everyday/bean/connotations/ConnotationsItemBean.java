@@ -2,6 +2,7 @@ package com.leo.everyday.bean.connotations;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  * 描述：
  */
 
-public class ConnotationsItemBean {
+public class ConnotationsItemBean implements Serializable {
 
 
 //    comments	Array
@@ -28,7 +29,7 @@ public class ConnotationsItemBean {
     public int type;
     public GroupBean group;
 
-    public static class GroupBean {
+    public static class GroupBean implements Serializable {
 
 //        large_cover：视频截图
 //        user：作者信息
@@ -62,7 +63,7 @@ public class ConnotationsItemBean {
 
     }
 
-    public static class PicItemBean {
+    public static class PicItemBean implements Serializable {
 //        height	1225
 //        is_gif	false
 //        uri	large/5b7e0007fe9844cad810
@@ -78,7 +79,7 @@ public class ConnotationsItemBean {
         public List<UrlListBean> url_list;
     }
 
-    public static class VideoUser {
+    public static class VideoUser implements Serializable {
 //        avatar_url	http://p1.pstatp.com/medium/5d4c00054cd2dd1fedba
 //        followers	46409
 //        followings	0
@@ -97,7 +98,7 @@ public class ConnotationsItemBean {
     }
 
 
-    public static class LargeCover {
+    public static class LargeCover implements Serializable {
 //        uri	large/46450012192a00d6fbe7
 //        url_list	Array
 
@@ -105,32 +106,32 @@ public class ConnotationsItemBean {
         public List<UrlListBean> url_list;
     }
 
-    public static class Video720p {
+    public static class Video720p implements Serializable {
         public int height;
         public String uri;
         public List<UrlListBean> url_list;
         public int width;
     }
 
-    public static class Video480p {
+    public static class Video480p implements Serializable {
         public int height;
         public String uri;
         public List<UrlListBean> url_list;
         public int width;
     }
 
-    public static class Video360p {
+    public static class Video360p implements Serializable {
         public int height;
         public String uri;
         public List<UrlListBean> url_list;
         public int width;
     }
 
-    public static class UrlListBean {
+    public static class UrlListBean implements Serializable {
         public String url;
     }
 
-    public static class CommentBean {
+    public static class CommentBean implements Serializable {
         public String avatar_url;
         public String create_time;
         public String text;
@@ -163,7 +164,7 @@ public class ConnotationsItemBean {
     }
 
 
-    public static class AdBean {
+    public static class AdBean implements Serializable {
 
     }
 

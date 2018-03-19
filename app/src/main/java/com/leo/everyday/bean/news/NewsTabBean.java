@@ -8,7 +8,7 @@ import java.util.List;
  * <p>
  * 描述：新闻类的实体类
  */
-public class NewsTabBean {
+public class NewsTabBean implements Serializable {
 
     public String type;//自行添加用来判断的
 
@@ -16,7 +16,7 @@ public class NewsTabBean {
     public String reason;
     public ResultBean result;
 
-    public class ResultBean {
+    public class ResultBean implements Serializable {
         public String stat;
         public List<DataBean> data;
 

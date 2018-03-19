@@ -2,11 +2,10 @@ package com.leo.everyday.module.news.tabs;
 
 import android.util.Log;
 
-import com.leo.everyday.NewsErrorHandleTransformer;
-import com.leo.everyday.RetrofitFactory;
-import com.leo.everyday.api.INewsApi;
 import com.leo.everyday.bean.news.NewsTabBean;
-
+import com.leo.everyday.networklibrary.ApiBiz;
+import com.leo.everyday.request.NewsRequest;
+import com.leo.everyday.transformer.NewsErrorHandleTransformer;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -17,7 +16,7 @@ import io.reactivex.schedulers.Schedulers;
  * <p>
  * 描述：
  */
-
+@SuppressWarnings("unchecked")
 public class NewsTabPresenter implements INewsTab.Presenter {
 
     private static final String TAG = "NewsArticlePresenter";
@@ -40,16 +39,15 @@ public class NewsTabPresenter implements INewsTab.Presenter {
 
     @Override
     public void doLoadData(final boolean isRefresh, final boolean isLoadMore, String... type) {
-        try {
-            if (this.type == null) {
-                this.type = type[0];
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (this.type == null) {
+            this.type = type[0];
         }
+        NewsRequest newsRequest = new NewsRequest();
+        newsRequest.key = "233358d4fdb8a6e0f1dd4868f328e752";
+        newsRequest.type = this.type;
 
-        RetrofitFactory.getRetrofit().create(INewsApi.class)
-                .getNewsItems("233358d4fdb8a6e0f1dd4868f328e752", this.type)
+        ApiBiz.getInstance()
+                .get("http://v.juhe.cn/toutiao/index", newsRequest, NewsTabBean.class)
                 .compose(new NewsErrorHandleTransformer())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -95,6 +93,6 @@ public class NewsTabPresenter implements INewsTab.Presenter {
                             view.hideLoading();
                     }
                 });
-    }
 
+    }
 }

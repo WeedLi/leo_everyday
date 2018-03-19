@@ -42,6 +42,7 @@ public interface BaseApiService {
             @FieldMap Map<String, String> params
     );
 
+
     @GET
     @Streaming
     Observable<ResponseBody> download(@Url String url);
