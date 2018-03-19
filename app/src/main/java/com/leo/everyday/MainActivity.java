@@ -9,10 +9,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.leo.everyday.module.connotations.ConnotationsTabLayout;
 import com.leo.everyday.module.news.NewsTablayout;
 import com.leo.everyday.module.photo.PhotoTabLayout;
-import com.leo.everyday.module.connotations.ConnotationsTabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -134,5 +135,19 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.hide(connotationsTabLayout);
     }
 
+
+    // 返回键的监听
+    private long exitTime = 0;
+
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
+        if ((currentTime - exitTime) < 2000) {
+            super.onBackPressed();
+        } else {
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            exitTime = currentTime;
+        }
+    }
 
 }
