@@ -1,4 +1,5 @@
 # leo_everyday
+<img src="./art/logo_192.png" width="128" alt="logo">
 
 everyday采用 MVP + RxJava + Retrofit 架构的项目。里面的功能都在不断的完善中。
 
@@ -6,11 +7,8 @@ everyday采用 MVP + RxJava + Retrofit 架构的项目。里面的功能都在�
             [干货集中营](http://gank.io/)
             [内涵段子 Api](https://github.com/jokermonn/-Api/blob/master/Neihan.md)
 
-### APK包
-
-* [slideTable.apk](https://github.com/WeedLi/SlideTable/blob/master/slideTable.apk)
-
-### 效果图
+## 效果图
+![](art/app_photo.png)
 
 ## Points
 - MVP架构模式
